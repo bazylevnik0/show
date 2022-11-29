@@ -25,11 +25,6 @@ int main( int argc, char* argv[] )
     width = BMP_GetWidth( bmp );
     height = BMP_GetHeight( bmp );
 
-    //We choose random points for infection of spores (white pixels, with trees)
-    //Spores start eat and grow -> black points and near-black areas
-    //Active grow white areas , black points grow to gray area
-    //New black pixels(many) and reepeat, old gray area transform to green, white continue grow
-
     //random seed
     srand(time(NULL)); 
     r = 0;
@@ -183,11 +178,12 @@ int main( int argc, char* argv[] )
                     }
                 }
             }
-        }           
+        }
+                  
         /* Save result */
         char name[20] = "./output/output";
-        char num[3];
-        sprintf(num, "%d", t);
+        char num[4];       //+100 because fix for animation
+        sprintf(num, "%d", t+100);
         strcat(name,num);
         strcat(name,".bmp");
         BMP_WriteFile( bmp, name );
